@@ -25,7 +25,13 @@ test:
   database: bookstore_test
   username: bookstore
   password: bookstore
-  
+
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresq
+  encoding: unicode
+  database: bookstore_production
+  pool: 5
+  timeout: 5000
+  username: amanda
+  password:
