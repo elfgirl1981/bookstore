@@ -1,10 +1,10 @@
 <div id="books-show">
 
-    <h2> Ajax on Rails </h2>
+    <h2> <%= @book.title %> </h2>
 
     <div class="books-show-left">
 
-      <%= image_tag('covers/ajax_on_rails.jpg') %>
+      <%= image_tag(@book.coverpath) %>
 
     </div>
 
@@ -14,23 +14,23 @@
 
         <ul>
 
-          <li> <strong> Category: </strong> Ruby on Rails</li>
+          <li> <strong> Category: </strong> <%= @book.category.name %></li>
 
-          <li> <strong> Author:  </strong> Scott Raymond </li>
+          <li> <strong> Author:  </strong> <%= @book.author.first_name %> <%= @book.author.last_name %></li>
 
-          <li> <strong> Publisher:  </strong> O'Reilly Media </li>
+          <li> <strong> Publisher:  </strong> <%= @book.publisher.name %> </li>
 
-          <li> <strong> Year: </strong> 2007 </li>
+          <li> <strong> Year: </strong> <%= @book.year %> </li>
 
-          <li> <strong> ISBN:  </strong> 978-0-596-52744-0 </li>
+          <li> <strong> ISBN:  </strong> <%= @book.isbn %> </li>
 
-          <li> <strong> Format: </strong> Paperback </li>
+          <li> <strong> Format: </strong> <%= @book.format %> </li>
 
-          <li> <strong> Pages: </strong> 352 </li>
+          <li> <strong> Pages: </strong> <%= @book.pages %> </li>
 
         </ul>
 
-        <%= link_to "Buy for $31.20", 'https://www.amazon.com/Ajax-Rails-Scott-Raymond/dp/0596527446/ref=sr_1_1?ie=UTF8&qid=1469133120&sr=8-1&keywords=978-0-596-52744-0+isbn', class: 'btn btn-success', target: '_blank' %>
+        <%= link_to "Buy for "+ @book.price, @book.buy, class: 'btn btn-success', target: '_blank' %>
 
     </div>
 
@@ -38,6 +38,10 @@
 
     <h4> Excerpt: </h4>
 
-      <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie, dolor id placerat dignissim, diam turpis varius magna, non interdum lectus augue sed ex. Ut sed est et enim feugiat congue. Suspendisse feugiat lacus non fermentum tincidunt. Phasellus egestas et est vitae finibus. Etiam lorem tortor, tempor id leo ac, finibus blandit arcu. Vestibulum condimentum diam vitae dapibus bibendum. Morbi ut lacus sagittis, malesuada lorem feugiat, mattis felis. Maecenas molestie lacinia quam sed convallis. Sed in enim erat. </p>
+      <p> <%= @book.excerpt %> </p>
+
+    <h3> Admin Functions </h3>
+
+      <%= link_to 'Edit', edit_book_path(@book.id) %> | <%= link_to 'Delete', book_path(@book), method: :delete, data: {confirm: 'Are you sure?'} %>
 
 </div>
